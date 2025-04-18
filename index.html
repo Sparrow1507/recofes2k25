@@ -34,7 +34,7 @@
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html"><img src="images/tlsl.png"></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" style="margin-right: -6px;">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 
@@ -42,9 +42,8 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
-	          <li class="nav-item"><a href="sponsors.html" class="nav-link">Sponsors</a></li>
 	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+			  <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
 	          <li class="nav-item cta mr-md-2"><a href="register.html" class="nav-link">Register</a></li>
 	        </ul>
 	      </div>
@@ -54,20 +53,10 @@
 
 
     <div class="hero-wrap js-fullheight" style="background-image: url('images/bg12.png');" data-stellar-background-ratio="0.5">
-
+	
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight justify-content-center align-items-center" data-scrollax-parent="true">
-          <table>
-            <tr>
-              <td><div class="mb-4 align-items-center"></div></td>
-            </tr>
-            <tr>
-              <td><div class="mb-4 align-items-center"></div></td>
-            </tr>
-            <tr>
-              <td><div class="mb-4 align-items-center"></div></td>
-            </tr>
-            	<tr>
+          <table style="margin-top: -50px;">
                 <td><div class="mb-4 align-items-center"><img src = "images\MIT-WPU-logo.png"></div></td>
               </tr>
               <tr>
@@ -81,19 +70,48 @@
 					     </tr>
 					    <tr>
           			<td>
-          				<div id="timer" class="d-flex mb-3 " style="height: 96px; width: 400px;">
-						  	  <div class="time" id="days"></div>
-						  	  <div class="time pl-4" id="hours"></div>
-						  	  <div class="time pl-4" id="minutes"></div>
-						 	    <div class="time pl-4" id="seconds"></div>
-							 </div>
+						<div id="timer" style="display: flex; flex-wrap: wrap; justify-content: center; padding: 0 10px; text-align: center; width: 100%;">
+							<div class="time" style="flex: 1 1 80px; max-width: 100px; padding: 5px;">
+							  <h2 id="days" style="margin-bottom: 0; color: #8a4af3;">8</h2>
+							</div>
+							<div class="time" style="flex: 1 1 80px; max-width: 100px; padding: 5px;">
+							  <h2 id="hours" style="margin-bottom: 0; color: #8a4af3;">11</h2>
+							</div>
+							<div class="time" style="flex: 1 1 80px; max-width: 100px; padding: 5px;">
+							  <h2 id="minutes" style="margin-bottom: 0; color: #8a4af3;">56</h2>
+							</div>
+							<div class="time" style="flex: 1 1 80px; max-width: 100px; padding: 5px;">
+							  <h2 id="seconds" style="margin-bottom: 0; color: #8a4af3;">33</h2>
+							</div>
+						  </div>
 						</td>
 					</tr>
+					<tr>
+						<tr>
+							<td>
+							  <div class="container mt-4">
+								<div class="row justify-content-center g-3">
+								  <div class="col-auto">
+									<a href="attachments/Recofes - Event Rules.pdf" target="_blank" class="btn btn-outline-dark px-4 py-2 fw-bold rounded-pill">
+									  EVENT RULES
+									</a>
+								  </div>
+								  <div class="col-auto">
+									<a href="register.html" class="btn btn-primary px-4 py-2 fw-bold rounded-pill">
+									  Register
+									</a>
+									
+								  </div>
+								</div>
+							  </div>
+							</td>
+						  </tr> 
           	</table>
           </div>
         </div>
       </div>
     </div>
+
 
     <section class="ftco-section services-section bg-light">
       <div class="container">
@@ -203,7 +221,123 @@
             <h2 class="mb-4"><span>Recofes</span> Schedule</h2>
           </div>
         </div>
-        <div class="ftco-search">
+
+		<div class="container" style="padding: 20px 10px; margin-top: -50px;">
+			<!-- Tab Buttons -->
+			<ul class="nav nav-pills justify-content-center mb-3" id="day-tabs" role="tablist" style="gap: 10px;">
+				<li class="nav-item" role="presentation">
+				  <button class="nav-link active" id="day1-tab" data-toggle="pill" data-target="#day1" type="button" role="tab"
+					aria-controls="day1" aria-selected="true">DAY 1</button>
+				</li>
+				<li class="nav-item" role="presentation">
+				  <button class="nav-link" id="day2-tab" data-toggle="pill" data-target="#day2" type="button" role="tab"
+					aria-controls="day2" aria-selected="false">DAY 2</button>
+				</li>
+			  </ul>
+		  
+			<!-- Tab Contents -->
+			<div class="tab-content" id="dayTabContent">
+			  
+			  <!-- Day 1 -->
+			  <div class="tab-pane fade show active" id="day1" role="tabpanel" aria-labelledby="day1-tab">
+				<div class="ftco-animate" style="background: #f9f9f9; border-radius: 10px; padding: 15px;">
+				  <h3 class="ftco-animate" style="text-align: center; background: #001F5B; color: white; padding: 10px; border-radius: 6px;">25 April 2025</h3>
+				  <div style="margin-top: 15px;">
+					<div class="ftco-animate" style="background: #f4aeff; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #001F5B;">09:30 – 11:00</h4>
+					  <p style="color: black;">Inauguration</p>
+					</div>
+					<div class="ftco-animate" style="background: #f0f8ff; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #001F5B;">11:00 – 12:15</h4>
+					  <p style="color: black;">Classical Dance</p>
+					</div>
+					<div class="ftco-animate" style="background: #ffe5e5; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #cc0000;">12:15 – 01:00</h4>
+					  <p style="color: black;">Lunch</p>
+					</div>
+					<div class="ftco-animate" style="background: #f0f8ff; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #001F5B;">01:00 – 04:30</h4>
+					  <ul style="color: black;">
+						<li>Solo Singing</li>
+						<li>Solo Dance</li>
+						<li>Instrument Playing</li>
+						<li>Drama</li>
+						<li>Miming</li>
+					  </ul>
+					</div>
+					<div class="ftco-animate" style="background: #fff3cd; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #856404;">04:30 – 05:30</h4>
+					  <p style="color: black;">Break and Assemble in Outdoor</p>
+					</div>
+					<div class="ftco-animate" style="background: #e8f5e9; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #2e7d32;">05:30 – 06:30</h4>
+					  <p style="color: black;">Group Dance</p>
+					</div>
+					<div class="ftco-animate" style="background: #d1c4e9; border-radius: 10px; padding: 15px;">
+					  <h4 style="color: #4a148c;">06:30 – 08:30</h4>
+					  <p style="color: black;">Concert</p>
+					</div>
+				  </div>
+				</div>
+			  </div>
+		  
+			  <!-- Day 2 -->
+			  <div class="tab-pane fade" id="day2" role="tabpanel" aria-labelledby="day2-tab">
+				<div class="ftco-animate" style="background: #f9f9f9; border-radius: 10px; padding: 15px;">
+				  <h3 class="ftco-animate" style="text-align: center; background: #001F5B; color: white; padding: 10px; border-radius: 6px;">26 April 2025</h3>
+		  
+				  <div style="margin-top: 15px;">
+					<div class="ftco-animate" style="background: #f0f8ff; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #001F5B;">09:30 – 12:30</h4>
+					  <p style="color: black;">Mini Events</p>
+					  <ul class="ftco-animate" style="padding-left: 20px; color: black;">
+						<li>Rangoli</li>
+						<li>Pushup Challenge</li>
+						<li>Photography</li>
+						<li>Esports</li>
+						<li>Start Music</li>
+						<li>Reels Making</li>
+						<li>Cine Quiz</li>
+						<li>Memes Mania</li>
+						<li>IPL Auction</li>
+						<li>Eatathon</li>
+						<li>Squid Game</li>
+					  </ul>
+					</div>
+					<div class="ftco-animate" style="background: #ffe5e5; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #cc0000;">12:30 – 01:30</h4>
+					  <p style="color: black;">Lunch</p>
+					</div>
+					<div class="ftco-animate" style="background: #f0f8ff; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #001F5B;">01:30 – 04:30</h4>
+					  <ul class="ftco-animate" style="color: black;">
+						<li>Duo Dance</li>
+						<li>Duo Singing</li>
+						<li>Variety Variety</li>
+						<li>Adapt Tunes</li>
+					  </ul>
+					</div>
+					<div class="ftco-animate" style="background: #fff3cd; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #856404;">04:30 – 05:30</h4>
+					  <p style="color: black;">Snacks Time</p>
+					</div>
+					<div class="ftco-animate" style="background: #e8f5e9; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+					  <h4 style="color: #2e7d32;">05:30 – 06:30</h4>
+					  <p style="color: black;">Group Dance</p>
+					</div>
+					<div class="ftco-animate" style="background: #d1c4e9; border-radius: 10px; padding: 15px;">
+					  <h4 style="color: #4a148c;">06:30 – 08:15</h4>
+					  <p style="color: black;">DJ Night</p>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <p id="selected-day-display" style="text-align:center; font-weight:bold;"></p>
+
+		  
+        <!-- <div class="ftco-search">
 					<div class="row ">
             <div class="col-md-12 nav-link-wrap">
 	            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -338,11 +472,11 @@
 	        </div>
         </div>
 			</div>
-		</section> 
+		</section>  -->
 
 
 
-    <section class="ftco-section bg-light" id="events">
+    <!-- <section class="ftco-section bg-light" id="events">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section ftco-animate text-center">
@@ -458,14 +592,101 @@
 	          </div>
 	        </div>
 	      </div>
+      </div> -->
+
+	  
+	  
+	  <div class="container ftco-animate" style="margin-top: -530px;">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
+          <div class="col-md-9 ftco-animate pb-5">
+            <h1 class="mb-3 bread ftco-animate">Contact Us</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i class="ion-ios-arrow-forward"></i></span></p>
+          </div>
+        </div>
       </div>
-      <div class="col-md-12  text-center">        
+	  <div class="row block-9 ftco-animate ftco-animate">
+		<div class="col-md-6 order-md-last d-flex">
+		  <form action="https://getform.io/f/bolmjkpa ftco-animate" method="POST" class="bg-light p-5 contact-form">
+
+			<!-- ✅ Hidden fields start here -->
+			<input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you.html">
+			<input type="hidden" name="_captcha" value="false">
+			<!-- ✅ Hidden fields end here -->
+		  
+			<div class="form-group" style="margin-top: -80px;">
+			  <h1 class="heading">Have Questions?</h1>
+			</div>
+			<div class="form-group">
+			  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+			</div>
+			<div class="form-group">
+			  <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+			</div>
+			<div class="form-group">
+			  <input type="text" name="subject" class="form-control" placeholder="Subject">
+			</div>
+			<div class="form-group">
+			  <textarea name="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+			</div>
+			<div class="form-group">
+			  <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+			</div>
+		  </form>
+		  
+		</div>
+
+		<div class="col-md-6 d-flex ftco-animate">
+		  <div class="mapouter">
+			<div class="gmap_canvas">
+			  <iframe width="500" height="583" id="gmap_canvas" src="https://maps.google.com/maps?q=Rajiv%20Gandhi%20College%20of%20Engineering%20and%20Technology,%20Puducherry&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+			</div>
+			<style>
+			  .mapouter {
+				text-align: right;
+				height: 583px;
+				width: 100%;
+			  }
+			  .gmap_canvas {
+				overflow: hidden;
+				background: none !important;
+				height: 583px;
+				width: 100%;
+			  }
+			</style>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </section><br>
+  <div class="col-md-12  text-center ftco-animate">
+	<a href="attachments/Recofes - Event Rules.pdf" target="_blank" class="btn btn-outline-dark center-block">EVENT RULES</a><br />
+  </div>
+  <div class="container col-md-4 ftco-animate">
+	<br />
+	<a href="register.html" class="btn btn-primary center-block btn-lg btn-block">Register</a>
+  </div>
+  </section>
+  <br>
+	  
+  <div class="container my-5 text-center">
+	<h3 style="font-weight: 600;">Rate Our Website</h3>
+	<div id="star-rating" style="font-size: 40px; color: #ccc; cursor: pointer;">
+	  <span data-value="1">&#9733;</span>
+	  <span data-value="2">&#9733;</span>
+	  <span data-value="3">&#9733;</span>
+	  <span data-value="4">&#9733;</span>
+	  <span data-value="5">&#9733;</span>
+	</div>
+	<p id="rating-summary" style="margin-top: 15px; font-size: 18px;"></p>
+  </div>
+
+      <!-- <div class="col-md-12  text-center">        
 	  <a href="attachments\Recofes - Event Rules.pdf" target="_blank" class="btn btn-outline-dark center-block">EVENT RULES</a><br />
       </div>
       <div class="container col-md-4">
         <br />
         <a href="register.html" class="btn btn-primary center-block btn-lg btn-block">Register</a>
-      </div>
+      </div> -->
     </section>
 
 <!--footer starts-->
@@ -493,7 +714,7 @@
             <div class="ftco-footer-widget mb-4 ml-md-5">
               <h2 class="ftco-heading-2">Useful Links</h2>
               <ul class="list-unstyled">
-                <li><a href="index.html#events" target="_blank" class="py-2 d-block">Event</a></li>
+                <li><a href="events.html" target="_blank" class="py-2 d-block">Event</a></li>
                 <li><a href="contact.html" target="_blank" class="py-2 d-block">Contact</a></li>
                 <li><a href="https://rgcet.edu.in/" target="_blank" class="py-2 d-block">RGCET</a></li>
               </ul>
@@ -530,8 +751,129 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
+  <!-- Add these if using a plain HTML file -->
+<!-- Add Firebase SDK -->
+<script type="module">
+	// Import the functions you need from the Firebase SDK
+	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+	import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+  
+	// Your Firebase configuration
+	const firebaseConfig = {
+	  apiKey: "AIzaSyAjIX6W3RfsjK8TGQIcjqtUpcq4sNmzoaA",
+	  authDomain: "recofes2k25-6af75.firebaseapp.com",
+	  projectId: "recofes2k25-6af75",
+	  storageBucket: "recofes2k25-6af75.firebasestorage.app",
+	  messagingSenderId: "617125300378",
+	  appId: "1:617125300378:web:8982bf549ab79995c4f723",
+	  measurementId: "G-PNE7LRWVC0"
+	};
+  
+	// Initialize Firebase
+	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
+  
+	// Get the reference to the Firestore document for ratings
+	const ratingDoc = doc(db, "ratings", "siteRating");
+  
+	// DOM elements
+	const stars = document.querySelectorAll('#star-rating span');
+	const summary = document.getElementById('rating-summary');
+	let rated = localStorage.getItem('rated') === 'yes';  // Check if the user has already rated
+  
+	// Load ratings data from Firestore
+	async function loadRating() {
+	  const docSnap = await getDoc(ratingDoc);
+	  if (docSnap.exists()) {
+		updateSummary(docSnap.data());
+	  } else {
+		await setDoc(ratingDoc, { total: 0, sum: 0 });  // Initialize with default values
+	  }
+	}
+  
+	// Event listeners for star clicks
+	stars.forEach(star => {
+	  star.addEventListener('click', async () => {
+		if (rated) {
+		  alert("You've already rated. Thank you!");
+		  return;
+		}
+  
+		const value = parseInt(star.getAttribute('data-value'));
+		const docSnap = await getDoc(ratingDoc);
+		const data = docSnap.data();
+		const newTotal = data.total + 1;
+		const newSum = data.sum + value;
+  
+		// Update Firestore document with new ratings data
+		await setDoc(ratingDoc, { total: newTotal, sum: newSum });
+		updateSummary({ total: newTotal, sum: newSum });
+  
+		// Mark that the user has rated
+		localStorage.setItem('rated', 'yes');
+		rated = true;
+  
+		// Highlight the selected stars
+		highlightStars(value);
+	  });
+	});
+  
+	// Function to update rating summary
+	function updateSummary(data) {
+	  if (data.total === 0) {
+		summary.textContent = "No ratings yet.";
+		return;
+	  }
+	  const avg = (data.sum / data.total).toFixed(1);
+	  summary.innerHTML = `⭐ Average Rating: <strong>${avg}</strong> from <strong>${data.total}</strong> users`;
+	}
+  
+	// Function to highlight stars based on rating
+	function highlightStars(count) {
+	  stars.forEach(star => {
+		if (parseInt(star.getAttribute('data-value')) <= count) {
+		  star.style.color = '#ffc107';  // Highlight selected stars
+		} else {
+		  star.style.color = '#ccc';  // Dim unselected stars
+		}
+	  });
+	}
+  
+	// Initial load of the rating data from Firestore
+	loadRating();
+  </script> 
+  
+  <script>
+	document.addEventListener('contextmenu', function(e) {
+	  e.preventDefault();
+	});
+  </script>
+  
+  <script>
+	document.querySelectorAll('#day-tabs button').forEach(btn => {
+	  btn.addEventListener('click', function () {
+		setTimeout(() => {
+		  const content = document.getElementById('dayTabContent');
+		  if (content) {
+			content.scrollIntoView({ behavior: 'smooth' });
+		  }
+		}, 100); // wait for the tab content to show
+	  });
+	});
+  </script>
+  <script>
+	document.querySelectorAll('#day-tabs button').forEach(btn => {
+	  btn.addEventListener('click', function () {
+		const selectedDay = this.textContent.trim();
+		console.log("Selected:", selectedDay);
+  
+		// Example: update another element
+		document.getElementById('selected-day-display').textContent = selectedDay;
+	  });
+	});
+  </script>
+  
+  
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>

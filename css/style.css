@@ -46,7 +46,10 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    scroll-behavior: smooth;
+  }
+  
 
 @-ms-viewport {
   width: device-width; }
@@ -76,6 +79,26 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5rem; }
+
+/* Add this to your CSS */
+.nav-pills .nav-link.active {
+  background-color: #004080 !important;
+  color: white !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.event-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.event-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 
 p {
   margin-top: 0;

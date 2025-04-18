@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>Recofes - 2K25</title>
+    <link rel="icon" href="images/tctext1.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -24,28 +25,25 @@
   <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-      <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="images/tlsl.png" alt="Recofes Logo" /></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav">
-          <span class="oi oi-menu"></span> Menu
-        </button>
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html"><img src="images/tlsl.png"></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation" style="margin-right: -6px;">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="index.html#events" class="nav-link">Events</a></li>
-            <li class="nav-item"><a href="sponsors.html" class="nav-link">Sponsors</a></li>
-            <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
-            <li class="nav-item cta mr-md-2"><a href="register.html" class="nav-link">Register</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="events.html" class="nav-link">Events</a></li>
+	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="index.html" class="nav-link">About</a></li>
+	          <li class="nav-item cta mr-md-2"><a href="register.html" class="nav-link">Register</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
 
-    <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-      <div class="overlay"></div>
-      <div class="container">
+      <div class="container" style="margin-top: -450px;">
         <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-start">
           <div class="col-md-9 ftco-animate pb-5">
             <h1 class="mb-3 bread">Contact Us</h1>
@@ -53,29 +51,25 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="ftco-section contact-section">
+
+    <section class="ftco-section contact-section" style="margin-top: -130px;">
       <div class="container">
-        <div class="row d-flex mb-5 contact-info">
-          <div class="col-md-12 mb-4">
-            <h2 class="h3">Contact Information</h2>
-          </div>
-          <div class="w-100"></div>
-          <div class="col-md-3">
-            <p><span>Address:</span><a target="_blank" href="https://maps.app.goo.gl/7xP8pknRfU32LtU58"><br />Rajiv Gandhi College of Engineering and Technology, Pondy-Cuddalore Road, Kirumampakkam, Puducherry – 607 403</a></p>
-          </div>
-          <div class="col-md-3">
-            <p><span>Phone:</span> <a href="tel:9876543210"><br />Student Co-ordinator<br />9876543210</a></p>
-            <p><span>Phone:</span> <a href="tel:9123456789"><br />Faculty Co-ordinator<br />9123456789</a></p>
-          </div>
-          <div class="col-md-3">
-            <p><span>Email:</span> <a href="mailto:recofes@rgcet.edu.in"><br />recofes@rgcet.edu.in</a></p>
-          </div>
-          <div class="col-md-3">
-            <p><span>Website:</span> <a target="_blank" href="https://rgcetpdy.ac.in"><br />rgcetpdy.ac.in</a></p>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p style="display: inline-block; margin-right: 20px;">
+                <span>Phone:</span> 
+                <a href="tel:9790675258">Student President<br />9790675258</a>
+              </p>
+              <p style="display: inline-block;">
+                <span>Phone:</span> 
+                <a href="tel:9790699256">Tech Team<br />9790699256</a>
+              </p>
+            </div>
           </div>
         </div>
+        
 
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
@@ -157,7 +151,7 @@
             <div class="ftco-footer-widget mb-4 ml-md-5">
               <h2 class="ftco-heading-2">Useful Links</h2>
               <ul class="list-unstyled">
-                <li><a href="index.html#events" target="_blank" class="py-2 d-block">Event</a></li>
+                <li><a href="events.html" target="_blank" class="py-2 d-block">Event</a></li>
                 <li><a href="contact.html" target="_blank" class="py-2 d-block">Contact</a></li>
                 <li><a href="https://rgcet.edu.in/" target="_blank" class="py-2 d-block">RGCET</a></li>
               </ul>
@@ -197,6 +191,20 @@
       </svg>
     </div>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const hash = window.location.hash;
+        if (hash) {
+          const el = document.querySelector(hash);
+          if (el) {
+            // Slight delay to ensure rendering
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: 'smooth' });
+            }, 300);
+          }
+        }
+      });
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -211,5 +219,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&sensor=false"></script>
     <script src="js/google-map.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+      });
+      </script>
   </body>
 </html>
