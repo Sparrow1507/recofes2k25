@@ -679,6 +679,13 @@
 	</div>
 	<p id="rating-summary" style="margin-top: 15px; font-size: 18px;"></p>
   </div>
+  <div id="review-box" style="margin-bottom: 30px;">
+    <input type="text" id="reviewer-name" placeholder="Your Name" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc;"><br>
+    <textarea id="review-text" placeholder="Write your review here..." rows="4" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;"></textarea><br><br>
+    <button onclick="submitReview()" style="padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px;">Submit Review</button>
+  </div>
+<h4 style="margin-top: 30px;">Recent Reviews</h4>
+  <div id="reviews-list" style="margin-top: 10px;"></div>
 
       <!-- <div class="col-md-12  text-center">        
 	  <a href="attachments\Recofes - Event Rules.pdf" target="_blank" class="btn btn-outline-dark center-block">EVENT RULES</a><br />
@@ -754,94 +761,198 @@
   <!-- Add these if using a plain HTML file -->
 <!-- Add Firebase SDK -->
 <script type="module">
-	// Import the functions you need from the Firebase SDK
-	import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-	import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+    // Import necessary Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, onSnapshot, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAjIX6W3RfsjK8TGQIcjqtUpcq4sNmzoaA",
+      authDomain: "recofes2k25-6af75.firebaseapp.com",
+      projectId: "recofes2k25-6af75",
+      storageBucket: "recofes2k25.appspot.com",
+      messagingSenderId: "617125300378",
+      appId: "1:617125300378:web:8982bf549ab79995c4f723"
+    };
+
+    // Initialize Firebase app
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // DOM elements
+    const stars = document.querySelectorAll('#star-rating span');
+    const submitButton = document.getElementById("submit-button");
+    const reviewsList = document.getElementById('reviews-list');
+    const ratingSummary = document.getElementById('rating-summary');
+    let starValue = 0;  // Stores the selected star rating value
+
+    // Event listener for star rating clicks
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        starValue = parseInt(star.getAttribute('data-value'));
+        highlightStars(starValue);  // Highlight the selected stars
+      });
+    });
+
+    // Function to highlight selected stars
+    function highlightStars(count) {
+      stars.forEach(star => {
+        if (parseInt(star.getAttribute('data-value')) <= count) {
+          star.style.color = '#ffc107';  // Highlight selected stars
+        } else {
+          star.style.color = '#ccc';  // Dim unselected stars
+        }
+      });
+    }
+
+    // Submit review function
+    window.submitReview = async function () {
+      const name = document.getElementById("reviewer-name").value.trim();
+      const reviewText = document.getElementById("review-text").value.trim();
+
+      // Validation: Ensure name, review text, and star rating are filled
+      if (!name || !reviewText || starValue === 0) {
+        alert("Please fill out both your name, review, and select a star rating.");
+        return;
+      }
+
+      try {
+        // Add review to Firestore with a timestamp and rating
+        await addDoc(collection(db, "reviews"), {
+          name: name,
+          text: reviewText,
+          rating: starValue,
+          timestamp: serverTimestamp()
+        });
+
+        // Update the overall rating data (average and total count)
+        const ratingDocRef = doc(db, "ratings", "siteRating");
+        const ratingDocSnap = await getDoc(ratingDocRef);
+
+        if (ratingDocSnap.exists()) {
+          const ratingData = ratingDocSnap.data();
+          const newTotal = ratingData.total + 1;
+          const newSum = ratingData.sum + starValue;
+          const newAverage = (newSum / newTotal).toFixed(1);
+
+          await updateDoc(ratingDocRef, {
+            total: newTotal,
+            sum: newSum
+          });
+
+          updateRatingSummary(newAverage, newTotal);
+        } else {
+          // Initialize if no ratings yet
+          await setDoc(ratingDocRef, { total: 1, sum: starValue });
+          updateRatingSummary(starValue, 1);
+        }
+
+        // Clear input fields after submission
+        document.getElementById("reviewer-name").value = "";
+        document.getElementById("review-text").value = "";
+        highlightStars(0);  // Reset the star selection after submission
+
+        alert("Review submitted successfully!");
+      } catch (error) {
+        console.error("Error submitting review:", error.message);
+        alert("Failed to submit review. Please check the console for details.");
+      }
+    };
+
+    // Function to update the rating summary with average and total users
+    function updateRatingSummary(avg, total) {
+      ratingSummary.innerHTML = `⭐ Average Rating: <strong>${avg}</strong> from <strong>${total}</strong> users`;
+    }
+
+    // Function to display reviews
+    function displayReviews(reviews) {
+      reviewsList.innerHTML = "";  // Clear existing reviews
+
+      reviews.forEach(doc => {
+        const data = doc.data();
+        const reviewDiv = document.createElement("div");
+        reviewDiv.style.display = "flex";
+        reviewDiv.style.alignItems = "center";
+        reviewDiv.style.marginBottom = "20px";
+        reviewDiv.style.backgroundColor = "#f9f9f9";
+        reviewDiv.style.padding = "15px";
+        reviewDiv.style.borderRadius = "8px";
+        reviewDiv.style.border = "1px solid #ddd";
+
+        // Profile icon (using your provided image path)
+        const profileIcon = document.createElement("img");
+        profileIcon.src = "/images/mini/pof.png";
+        profileIcon.alt = "Profile Icon";
+        profileIcon.style.width = "40px";
+        profileIcon.style.height = "40px";
+        profileIcon.style.borderRadius = "50%";
+        profileIcon.style.marginRight = "10px";  // Space between the image and text
+		profileIcon.style.marginTop = "-70px";
+
+        // Review content
+        const reviewContent = document.createElement("div");
+        reviewContent.style.flex = "1";
+
+        // Reviewer name
+        const reviewerName = document.createElement("div");
+        reviewerName.style.fontWeight = "bold";
+        reviewerName.style.marginBottom = "5px";
+        reviewerName.textContent = data.name;
+
+        // Review text
+        const reviewText = document.createElement("div");
+        reviewText.style.marginBottom = "5px";
+        reviewText.style.fontSize = "14px";
+        reviewText.textContent = data.text;
+
+        // Rating
+        const reviewRating = document.createElement("div");
+        reviewRating.style.color = "#ffc107";
+        reviewRating.innerHTML = `⭐ Rating: ${data.rating}`;
+
+        // Review date (timestamp from Firestore)
+        const reviewDate = document.createElement("div");
+        reviewDate.style.fontSize = "12px";
+        reviewDate.style.color = "#888";
+        const timestamp = data.timestamp ? data.timestamp.toDate() : new Date();
+        reviewDate.textContent = `Reviewed on: ${timestamp.toLocaleDateString()}`;
+
+        // Append all elements
+        reviewContent.appendChild(reviewerName);
+        reviewContent.appendChild(reviewText);
+        reviewContent.appendChild(reviewRating);
+        reviewContent.appendChild(reviewDate);
+
+        reviewDiv.appendChild(profileIcon);
+        reviewDiv.appendChild(reviewContent);
+
+        reviewsList.appendChild(reviewDiv);
+      });
+    }
+
+    // Show reviews from Firestore in real-time
+    onSnapshot(collection(db, "reviews"), (snapshot) => {
+      const reviews = snapshot.docs;
+      displayReviews(reviews);
+    });
+
+    // Load and display the current rating summary when the page loads
+    async function loadRating() {
+      const ratingDocRef = doc(db, "ratings", "siteRating");
+      const ratingDocSnap = await getDoc(ratingDocRef);
+
+      if (ratingDocSnap.exists()) {
+        const data = ratingDocSnap.data();
+        const averageRating = (data.sum / data.total).toFixed(1);
+        updateRatingSummary(averageRating, data.total);
+      } else {
+        updateRatingSummary(0, 0);
+      }
+    }
+
+    loadRating(); // Call the function to load the current rating data
+  </script>
   
-	// Your Firebase configuration
-	const firebaseConfig = {
-	  apiKey: "AIzaSyAjIX6W3RfsjK8TGQIcjqtUpcq4sNmzoaA",
-	  authDomain: "recofes2k25-6af75.firebaseapp.com",
-	  projectId: "recofes2k25-6af75",
-	  storageBucket: "recofes2k25-6af75.firebasestorage.app",
-	  messagingSenderId: "617125300378",
-	  appId: "1:617125300378:web:8982bf549ab79995c4f723",
-	  measurementId: "G-PNE7LRWVC0"
-	};
-  
-	// Initialize Firebase
-	const app = initializeApp(firebaseConfig);
-	const db = getFirestore(app);
-  
-	// Get the reference to the Firestore document for ratings
-	const ratingDoc = doc(db, "ratings", "siteRating");
-  
-	// DOM elements
-	const stars = document.querySelectorAll('#star-rating span');
-	const summary = document.getElementById('rating-summary');
-	let rated = localStorage.getItem('rated') === 'yes';  // Check if the user has already rated
-  
-	// Load ratings data from Firestore
-	async function loadRating() {
-	  const docSnap = await getDoc(ratingDoc);
-	  if (docSnap.exists()) {
-		updateSummary(docSnap.data());
-	  } else {
-		await setDoc(ratingDoc, { total: 0, sum: 0 });  // Initialize with default values
-	  }
-	}
-  
-	// Event listeners for star clicks
-	stars.forEach(star => {
-	  star.addEventListener('click', async () => {
-		if (rated) {
-		  alert("You've already rated. Thank you!");
-		  return;
-		}
-  
-		const value = parseInt(star.getAttribute('data-value'));
-		const docSnap = await getDoc(ratingDoc);
-		const data = docSnap.data();
-		const newTotal = data.total + 1;
-		const newSum = data.sum + value;
-  
-		// Update Firestore document with new ratings data
-		await setDoc(ratingDoc, { total: newTotal, sum: newSum });
-		updateSummary({ total: newTotal, sum: newSum });
-  
-		// Mark that the user has rated
-		localStorage.setItem('rated', 'yes');
-		rated = true;
-  
-		// Highlight the selected stars
-		highlightStars(value);
-	  });
-	});
-  
-	// Function to update rating summary
-	function updateSummary(data) {
-	  if (data.total === 0) {
-		summary.textContent = "No ratings yet.";
-		return;
-	  }
-	  const avg = (data.sum / data.total).toFixed(1);
-	  summary.innerHTML = `⭐ Average Rating: <strong>${avg}</strong> from <strong>${data.total}</strong> users`;
-	}
-  
-	// Function to highlight stars based on rating
-	function highlightStars(count) {
-	  stars.forEach(star => {
-		if (parseInt(star.getAttribute('data-value')) <= count) {
-		  star.style.color = '#ffc107';  // Highlight selected stars
-		} else {
-		  star.style.color = '#ccc';  // Dim unselected stars
-		}
-	  });
-	}
-  
-	// Initial load of the rating data from Firestore
-	loadRating();
-  </script> 
   
   <script>
 	document.addEventListener('contextmenu', function(e) {
@@ -872,6 +983,7 @@
 	  });
 	});
   </script>
+  
   
   
   <script src="js/jquery.min.js"></script>
